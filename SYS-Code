@@ -1,0 +1,152 @@
+library(tidyverse)
+library(dplyr)
+
+#####################################
+
+### Uploading the csv files containing the shots data
+## Link to downloading the shots data (big thank you to douglasbc)  https://github.com/douglasbc/scraping-understat-dataset/tree/main/datasets
+
+
+### And if you would like to download the shots data from understat yourselves, this is the code you can use (will take ~10-15 minutes to download) 
+library(worldfootballR)
+# The leagues currently available for Understat are: "EPL", "La liga", "Bundesliga", "Serie A", "Ligue 1", "RFPL"
+Data <- understat_league_season_shots(league = "Ligue 1", season_start_year = 2023) 
+
+#####################################
+
+### PL
+PL.14.15 <- read.csv("...14-15.txt")
+PL.15.16 <- read.csv("...15-16.txt")
+PL.16.17 <- read.csv("...16-17.txt")
+PL.17.18 <- read.csv("...17-18.txt")
+PL.18.19 <- read.csv("...18-19.txt")
+PL.19.20 <- read.csv("...19-20.txt")
+PL.20.21 <- read.csv("...20-21.txt")
+PL.21.22 <- read.csv("...21-22.csv")
+PL.22.23 <- read.csv("...22-23.csv")
+PL.23.24 <- read.csv("...23-24.csv")
+
+PL.Shots = rbind(PL.14.15, PL.15.16, PL.16.17, PL.17.18, PL.18.19, PL.19.20, PL.20.21, PL.21.22, PL.22.23, PL.23.24)
+PL.Shots$League = "PL"
+rm(PL.14.15, PL.15.16, PL.16.17, PL.17.18, PL.18.19, PL.19.20, PL.20.21, PL.21.22, PL.22.23, PL.23.24)
+
+
+### La Liga
+LL.14.15 <- read.csv("...14-15.txt")
+LL.15.16 <- read.csv("...15-16.txt")
+LL.16.17 <- read.csv("...16-17.txt")
+LL.17.18 <- read.csv("...17-18.txt")
+LL.18.19 <- read.csv("...18-19.txt")
+LL.19.20 <- read.csv("...19-20.txt")
+LL.20.21 <- read.csv("...20-21.txt")
+LL.21.22 <- read.csv("...21-22.csv")
+LL.22.23 <- read.csv("...22-23.csv")
+LL.23.24 <- read.csv("...23-24.csv")
+
+LL.Shots = rbind(LL.14.15, LL.15.16, LL.16.17, LL.17.18, LL.18.19, LL.19.20, LL.20.21, LL.21.22, LL.22.23, LL.23.24)
+LL.Shots$League = "LaLiga"
+rm(LL.14.15, LL.15.16, LL.16.17, LL.17.18, LL.18.19, LL.19.20, LL.20.21, LL.21.22, LL.22.23, LL.23.24)
+
+
+
+### Ligue-1
+L1.14.15 <- read.csv("...14-15.txt")
+L1.15.16 <- read.csv("...15-16.txt")
+L1.16.17 <- read.csv("...16-17.txt")
+L1.17.18 <- read.csv("...17-18.txt")
+L1.18.19 <- read.csv("...18-19.txt")
+L1.19.20 <- read.csv("...19-20.txt")
+L1.20.21 <- read.csv("...20-21.txt")
+L1.21.22 <- read.csv("...21-22.csv")
+L1.22.23 <- read.csv("...22-23.csv")
+L1.23.24 <- read.csv("...23-24.csv")
+
+L1.Shots = rbind(L1.14.15, L1.15.16, L1.16.17, L1.17.18, L1.18.19, L1.19.20, L1.20.21, L1.21.22, L1.22.23, L1.23.24)
+L1.Shots$League = "Ligue-1"
+rm(L1.14.15, L1.15.16, L1.16.17, L1.17.18, L1.18.19, L1.19.20, L1.20.21, L1.21.22, L1.22.23, L1.23.24)
+
+
+### Serie-A
+SA.14.15 <- read.csv("...14-15.txt")
+SA.15.16 <- read.csv("...15-16.txt")
+SA.16.17 <- read.csv("...16-17.txt")
+SA.17.18 <- read.csv("...17-18.txt")
+SA.18.19 <- read.csv("...18-19.txt")
+SA.19.20 <- read.csv("...19-20.txt")
+SA.20.21 <- read.csv("...20-21.txt")
+SA.21.22 <- read.csv("...21-22.csv")
+SA.22.23 <- read.csv("...22-23.csv")
+SA.23.24 <- read.csv("...23-24.csv")
+
+SA.Shots = rbind(SA.14.15, SA.15.16, SA.16.17, SA.17.18, SA.18.19, SA.19.20, SA.20.21, SA.21.22, SA.22.23, SA.23.24)
+SA.Shots$League = "Serie-A"
+rm(SA.14.15, SA.15.16, SA.16.17, SA.17.18, SA.18.19, SA.19.20, SA.20.21, SA.21.22, SA.22.23, SA.23.24)
+
+
+### Bundesliga
+BL.14.15 <- read.csv("...14-15.txt")
+BL.15.16 <- read.csv("...15-16.txt")
+BL.16.17 <- read.csv("...16-17.txt")
+BL.17.18 <- read.csv("...17-18.txt")
+BL.18.19 <- read.csv("...18-19.txt")
+BL.19.20 <- read.csv("...19-20.txt")
+BL.20.21 <- read.csv("...20-21.txt")
+BL.21.22 <- read.csv("...21-22.csv")
+BL.22.23 <- read.csv("...22-23.csv")
+BL.23.24 <- read.csv("...23-24.csv")
+
+BL.Shots = rbind(BL.14.15, BL.15.16, BL.16.17, BL.17.18, BL.18.19, BL.19.20, BL.20.21, BL.21.22, BL.22.23, BL.23.24)
+BL.Shots$League = "Bundesliga"
+rm(BL.14.15, BL.15.16, BL.16.17, BL.17.18, BL.18.19, BL.19.20, BL.20.21, BL.21.22, BL.22.23, BL.23.24)
+
+
+### All Together
+Shots = rbind(PL.Shots, LL.Shots, L1.Shots, SA.Shots, BL.Shots)
+rm(PL.Shots, LL.Shots, L1.Shots, SA.Shots, BL.Shots)
+
+
+### Data Preparation
+NPS = Shots %>% filter(situation != "Penalty")
+
+NPS$X2 = NPS$X*100
+NPS$Y2 = NPS$Y*100
+
+NPS$Location = 
+  ifelse(NPS$X2 < 83 | NPS$X2 >= 83 & NPS$Y2 > 78.9 
+         | NPS$X2 >= 83 & NPS$Y2 < 21.1 , "Outside the Box", 
+         ifelse(NPS$X2 >= 94.2 & NPS$Y2 >= 36.8  
+                & NPS$Y2 <= 63.2, "Six Yard Box", "Penalty Area"))
+
+
+### Thierry Henry Zone - Shots
+df = NPS %>%
+  filter(shotType == "RightFoot" & Y2 > 56 & X2 < 94.2 & Location == "Penalty Area") %>%
+  group_by(player) %>% 
+  summarise(Shots = n(),
+            xG = sum(xG, na.rm = TRUE),
+            Goals = sum(result == "Goal", na.rm = TRUE))
+
+df$Conv = df$Goals*100/df$Shots
+df$xGR = df$Goals/df$xG
+dfx = df %>% filter(Shots >= 100)
+View(dfx)
+
+
+ggplot(dfx, aes(x = reorder(player, +Conv), y = Conv)) + 
+  geom_bar(color="light blue", fill=("light blue") , stat = "identity") + 
+  geom_text(aes(label=paste0(round(Conv,2),'%')), position = position_dodge(width = 0.3), hjust = 1.1, size = 5) +
+  labs(x = "", y = "", title = "Europe's Top-5 Leagues: 2014/15 - 2023/24", 
+       subtitle = "Shot Conversion from the ''Thierry Henry'' zone (100+ shots taken)",
+       legend=FALSE) +
+  theme_bw() +
+  coord_flip()
+
+
+ggplot(dfx, aes(x = reorder(player, +xGR), y = xGR)) + 
+  geom_bar(color="black", fill=("green") , stat = "identity") + 
+  geom_text(aes(label=paste0(round(xGR,2))), position = position_dodge(width = 0.3), hjust = 1.1, size = 5) +
+  labs(x = "", y = "", title = "Europe's Top-5 Leagues: 2014/15 - 2023/24", 
+       subtitle = "xGR from the ''Thierry Henry'' zone (100+ shots taken)",
+       legend=FALSE) +
+  theme_bw() +
+  coord_flip()
